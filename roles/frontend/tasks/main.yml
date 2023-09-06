@@ -54,3 +54,9 @@
   ansible.builtin.copy:
     src: roboshop.conf
     dest: /etc/nginx/default.d/roboshop.conf
+
+- name: Make sure a Nginx service unit is running
+  ansible.builtin.systemd:
+    state: started
+    name: nginx
+    enable: yes
