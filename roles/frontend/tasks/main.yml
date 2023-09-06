@@ -33,6 +33,6 @@
 
 
 - name: Install Nginx
-  ansible.bultin.yum:
+  ansible.builtin.yum:
     - name: nginx
       state: Installed
