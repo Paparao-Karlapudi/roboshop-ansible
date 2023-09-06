@@ -59,4 +59,4 @@
   ansible.builtin.systemd:
     state: started
     name: nginx
-    enable: yes
+    enabled: yes
