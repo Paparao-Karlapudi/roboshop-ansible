@@ -30,8 +30,6 @@
 #print_head "Start Nginx"
 #systemctl start nginx
 #status_check
-
-
 - name: Install Nginx
   ansible.builtin.yum:
     - name: nginx
