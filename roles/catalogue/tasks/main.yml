@@ -31,7 +31,7 @@
     src: catalogue.service
     dest: /etc/systemd/system/catalogue.service
 
-- name: Make sure a catalogue service unit is running
+- name: Start catalogue service
   ansible.builtin.systemd:
     name: catalogue
     enabled: yes
