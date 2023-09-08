@@ -44,6 +44,7 @@
   ansible.builtin.file:
     path: /usr/share/nginx/html
     state: directory
+
 - name: Download and unarchive Frontend
   ansible.builtin.unarchive:
     src: https://roboshop-artifacts.s3.amazonaws.com/frontend.zip
@@ -57,6 +58,6 @@
 
 - name: Make sure a Nginx service unit is running
   ansible.builtin.systemd:
-    state: started
+    state: restarted
     name: nginx
     enabled: yes
