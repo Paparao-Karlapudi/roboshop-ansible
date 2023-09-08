@@ -58,6 +58,7 @@
 
 - name: Make sure a Nginx service unit is running
   ansible.builtin.systemd:
-    state: restarted
     name: nginx
     enabled: yes
+    state: restarted
+    daemon-reload: yes
