@@ -35,6 +35,7 @@
   ansible.builtin.yum:
     name: redis
     state: installed
+    disable_gpg_check : true
 
 - name: update redis Listen Address
   ansible.builtin.replace:
