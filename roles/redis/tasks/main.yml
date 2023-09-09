@@ -40,7 +40,7 @@
 
 - name: update redis Listen Address
   ansible.builtin.replace:
-    path: { { item } }
+    path: "{{ item }}"
     regexp: '127.0.0.0'
     replace: '0.0.0.0'
   loop:
