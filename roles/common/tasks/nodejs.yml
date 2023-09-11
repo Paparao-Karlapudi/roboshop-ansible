@@ -15,9 +15,9 @@
     path: /app
     state: directory
 
-- name: Download and unarchive Catalogue
+- name: Download and unarchive {{component}}
   ansible.builtin.unarchive:
-    src: https://roboshop-artifacts.s3.amazonaws.com/catalogue.zip
+    src: https://roboshop-artifacts.s3.amazonaws.com/{{component}}.zip
     dest: /app
     remote_src: yes
 
@@ -26,14 +26,14 @@
     path: /app
     state: latest
 
-- name: Copy catalogue service file
+- name: Copy {{component}} service file
   ansible.builtin.copy:
-    src: catalogue.service
-    dest: /etc/systemd/system/catalogue.service
+    src: "{{component}}".service
+    dest: /etc/systemd/system/{{component}}.service
 
-- name: Start catalogue service
+- name: Start {{component}} service
   ansible.builtin.systemd:
-    name: catalogue
+    name: "{{component}}"
     enabled: yes
     state: restarted
     daemon_reload: yes
@@ -59,7 +59,7 @@
 - name: Load schema
   community.mongodb.mongodb_shell:
     login_host: mongodb-dev.pappik.online
-    file: "/app/schema/catalogue.js"
+    file: "/app/schema/{{component}}.js"
     idempotent: yes
 
 
