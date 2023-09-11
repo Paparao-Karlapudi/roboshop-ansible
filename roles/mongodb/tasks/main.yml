@@ -16,6 +16,6 @@
 
 - name: Make sure a Mongodb service unit is running
   ansible.builtin.systemd:
-    state: restarted
     name: mongod
+    state: restarted
     enabled: yes
