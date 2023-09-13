@@ -49,13 +49,6 @@
     name: mongodb-org-shell
     state: installed
 
-- name: update MongoDB Listen Address
-  ansible.builtin.replace:
-    path: /etc/mongod.conf
-    regexp: '127.0.0.0'
-    replace: '0.0.0.0'
-
-
 - name: Load schema
   community.mongodb.mongodb_shell:
     login_host: mongodb-dev.pappik.online
