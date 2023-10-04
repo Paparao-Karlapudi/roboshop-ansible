@@ -44,29 +44,9 @@
     daemon_reload: yes
 
 
-- name: Copy Mongodb repo file
-  ansible.builtin.copy:
-    src: mongodb.repo
-    dest: /etc/yum.repos.d/mongodb.repo
-
-- name: Install Mongodb server
-  ansible.builtin.yum:
-    name: mongodb-org-shell
-    state: installed
-
-#- name: update MongoDB Listen Address
-#  ansible.builtin.replace:
-#    path: /etc/mongod.conf
-#    regexp: '127.0.0.0'
-#    replace: '0.0.0.0'
-
-
-- name: Load schema
-  community.mongodb.mongodb_shell:
-    login_host: mongodb-dev.pappik.online
-    file: "/app/schema/{{component}}.js"
-    idempotent: yes
-
+- name: Load Schema
+  import_tasks: "{{schema_type}}-schema.yml"
+  when: schema_load
 
 
 
