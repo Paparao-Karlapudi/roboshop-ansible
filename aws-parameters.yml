@@ -30,12 +30,12 @@
         - { name: "dev.user.REDIS_HOST", value: "redis-dev.pappikdev.in" }
 
 
-        ## Passwords should never be held in these repos, should be created manually but for the lab purpose we are creating them here
-- name: create secrets
-  community.aws.aws_ssm_parameter_store:
-    name: "{{item.name}}"
-    value: "{{item.value}}"
-    region: us-east-1
-    strung_type: "SecureString"
-  loop:
-        - {name: "dev.payment.AMQP_PASS", value: "roboshop123" }
+## Passwords should never be held in these repos, should be created manually but for the lab purpose we are creating them here
+    - name: create secrets
+      community.aws.aws_ssm_parameter_store:
+        name: "{{item.name}}"
+        value: "{{item.value}}"
+        region: us-east-1
+        strung_type: "SecureString"
+      loop:
+            - {name: "dev.payment.AMQP_PASS", value: "roboshop123" }
