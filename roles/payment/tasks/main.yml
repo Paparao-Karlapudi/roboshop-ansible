@@ -1,0 +1,5 @@
+#file: noinspection YAMLSchemaValidation
+- name: Import Python
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: python
