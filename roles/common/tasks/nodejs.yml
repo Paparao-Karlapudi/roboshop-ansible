@@ -3,7 +3,7 @@
 
 - name: App prereq
   ansible.builtin.include_tasks: "app-prereq.yml"
-  when: schema_load
+
 
 
 - name: Install Nodejs dependencies
