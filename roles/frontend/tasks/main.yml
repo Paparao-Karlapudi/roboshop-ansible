@@ -14,11 +14,21 @@
     path: /usr/share/nginx/html
     state: directory
 
-- name: Download and unarchive Frontend
+#- name: Download and unarchive Frontend
+#  ansible.builtin.unarchive:
+#    src: https://roboshop-artifacts.s3.amazonaws.com/frontend.zip
+#    dest: /usr/share/nginx/html
+#    remote_src: yes
+
+- name: Download and unarchive {{component}}
   ansible.builtin.unarchive:
-    src: https://roboshop-artifacts.s3.amazonaws.com/frontend.zip
+    src: http://{nexus_user}:{nexus_pass}@172.31.34.191:8081/{{component}}/{{component}}/shipping-${app_version}.zip
     dest: /usr/share/nginx/html
     remote_src: yes
+  vars:
+    nexus_user: "{{ lookup('aws_ssm', 'nexus_user', region='us-east-1' ) }}"
+    nexus_pass: "{{ lookup('aws_ssm', 'nexus_pass', region='us-east-1' ) }}"
+
 
 - name: Copy Roboshop config file to Nginx
   ansible.builtin.template:
